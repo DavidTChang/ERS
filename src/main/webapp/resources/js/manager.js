@@ -129,5 +129,6 @@ function filterStatus() {
 	}else if(status ==="All"){
 	    location.reload();
 	}
+}
 
 window.onload = rowSetup();
