@@ -14,7 +14,6 @@ import com.revature.enums.Status;
 import com.revature.pojo.Rmbmt;
 
 import oracle.jdbc.OracleTypes;
-import oracle.jdbc.oracore.OracleType;
 
 public class RmbmtDao implements IRmbmtDao {
 	private final static String URL = "jdbc:oracle:thin:@localhost:1521:xe";
