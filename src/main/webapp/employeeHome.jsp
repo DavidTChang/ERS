@@ -111,13 +111,6 @@
 					<!-- Table -->
 					<table class="table" class="empTable" id="empTable">
 					
-					<c:if test="${addRows != null }">
-						<c:set var="appendRows" scope="session" value ="${true }"/>
-					</c:if>
-					<c:if test="${addRows == null }">
-						<c:set var="appendRows" scope="session" value ="${false }"/>
-					</c:if>
-					
 						<thead>
 							<tr>
 								<th>Amount</th>
