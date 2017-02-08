@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 
 	<build>
-		<finalName>FrontController</finalName>
+		<finalName>ERS</finalName>
 
 	</build>
 
@@ -39,5 +39,12 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>4.0.0-b01</version>
 		</dependency>
+		<dependency>
+    		<groupId>ojdbc</groupId>
+		    <artifactId>com.oracle</artifactId>
+		    <version>1.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ojdbc7.jar</systemPath>
+</dependency>
 	</dependencies>
 </project>
