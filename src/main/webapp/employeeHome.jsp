@@ -42,22 +42,7 @@
 				<div class="panel panel-default" >
 					<!-- Default panel contents -->
 					<div class="panel-heading">REIMBURSEMENTS</div>
-					<div class="panel-body">
-				<%
-					if (session.getAttribute("rmbmtList") != null) {
-				%>
-				<div class="row">
-						<div class="col-md-2">
-							<select class="form-control " id="filterStatusId" name="filterStatus" 
-								onchange="filterStatus()">
-								<option>All</option>
-								<option>Pending</option>
-								<option>Approved</option>
-								<option>Declined</option>
-							</select>
-						</div>
-					
-					<div class="col-md-2 col-md-offset-8">
+						<div class="col-md-2 col-md-offset-8">
 				<button type="button" class="btn btn-primary helvet" data-toggle="modal"
 					data-target="#reimbursePop">New Reimbursement</button>
 					</div>
@@ -112,6 +97,21 @@
 						</div>
 					</div>
 				</div>
+					<div class="panel-body">
+				<%
+					if (session.getAttribute("rmbmtList") != null) {
+				%>
+				<div class="row">
+						<div class="col-md-2">
+							<select class="form-control " id="filterStatusId" name="filterStatus" 
+								onchange="filterStatus()">
+								<option>All</option>
+								<option>Pending</option>
+								<option>Approved</option>
+								<option>Declined</option>
+							</select>
+						</div>
+					
 				</div>
 					</div>
 					<!-- Table -->

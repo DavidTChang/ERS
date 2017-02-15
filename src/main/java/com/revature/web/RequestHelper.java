@@ -57,7 +57,9 @@ public class RequestHelper {
 			} else if (user.getUserRole() == UserRole.EMPLOYEE) {
 
 				List<Rmbmt> rmbmtList = new RmbmtService().getAllRmbmt(user.getUserId());
-				new RmbmtService().setMappedManagers(rmbmtList, req);
+				if(rmbmtList != null){
+					new RmbmtService().setMappedManagers(rmbmtList, req);
+				}
 				// Need to check if list is empty, do something else? or do that
 				// later.
 				req.getSession().setAttribute("rmbmtList", rmbmtList);

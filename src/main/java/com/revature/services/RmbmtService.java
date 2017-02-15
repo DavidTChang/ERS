@@ -40,8 +40,13 @@ public class RmbmtService {
 	}
 	
 	public void setMappedManagers(List<Rmbmt> rList, HttpServletRequest req){
+		if(rList != null || !rList.isEmpty()){
 		Map<Integer, User> mappedManagers = getMappedApprovedManagerMap(rList);	
 		req.getSession().setAttribute("addRows", mappedManagers);//maybe set map in here
+		}else{
+			req.getSession().setAttribute("addRows", null);//maybe set map in here
+
+		}
 	}
 	
 	public List<Rmbmt> getAllRmbmt(){
