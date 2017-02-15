@@ -2,9 +2,6 @@
  * 
  */
 
-window.onload = function(){
-    $('#empTable').DataTable();
-};
 
 function reloadPage() {
     location.reload();
@@ -30,4 +27,10 @@ function filterStatus() {
 	}else if(status ==="All"){
 	    location.reload();
 	}
+    var header = rows.filter('.header').show();
+}
+
+function filterStatusRevamped(){
+	var rows = $('#empTable tr');
+	
 }

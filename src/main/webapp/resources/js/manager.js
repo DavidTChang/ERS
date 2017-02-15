@@ -39,16 +39,18 @@ function updateReimbursements(){
 		var row = table.rows[i];
 		
 		var status = row.cells[5].getElementsByTagName("select")[0];
-		var sValue = status.value;
-		
-		var cell = row.getElementsByTagName("td")[7];
-		var value = cell.innerHTML;
-		
-		
-		if(sValue === "APPROVE"){
-			approvedList.push(value);
-		}else if(sValue ==="DECLINE"){
-			declinedList.push(value);
+		if(status != undefined){
+			var sValue = status.value;
+			
+			var cell = row.getElementsByTagName("td")[7];
+			var value = cell.innerHTML;
+			
+			
+			if(sValue === "APPROVE"){
+				approvedList.push(value);
+			}else if(sValue ==="DECLINE"){
+				declinedList.push(value);
+			}
 		}
 		//pending?
 	}
@@ -70,20 +72,22 @@ function updateReimbursements(){
 
 };
 
-function testAJAX(){
-	$.ajax({	
-		url: "empList",
-		method: "POST",
-		success: function(result, status, xhr){
-			console.log(result + " " + status);
-		},
-		error: function(xhr, status){
-			console.log("error");
-		},
-		complete: function(shr, status){
-			console.log("complete!");
-		}
-	});
+function filterEmployees(){
+	var employeeName = document.getElementById("selectEmployee").value;
+	var rows = $('#empTable tr');
+
+	console.log(employeeName);
+	
+	if(employeeName === "All"){
+		rows.show();
+	}else{
+		$('#empTable tbody tr').filter(function () {
+		    return $.trim($(this).find('td').eq(0).text()) !== employeeName;
+		}).hide();
+		$('#empTable tbody tr').filter(function () {
+		    return $.trim($(this).find('td').eq(0).text()) === employeeName;
+		}).show();
+	}
 }
 
 $(document).ready(function() { 
@@ -110,10 +114,10 @@ $(document).ready(function() {
 });
 
 
-var rows = $('#empTable tr');
 
 function filterStatus() {
-	
+	var rows = $('#empTable tr');
+
 	console.log("clicked");
 	
     var status = document.getElementById("filterStatusId").value;
@@ -129,6 +133,33 @@ function filterStatus() {
 	}else if(status ==="All"){
 	    location.reload();
 	}
+	var header = rows.filter('.header').show();
 }
+
+
+
+
+$(".getImg").click(function() {
+    var $row = $(this).closest("tr");    // Find the row
+    var $text = $row.find(".r_id_for_image").text(); // Find the text
+    
+    var idData = JSON.stringify({
+    	imageId : $text
+    });
+    console.log(idData);
+    $.ajax({	
+    	type: "POST",
+		url: "imageServlet/please",
+		dataType: "json",
+		contentType: "application/json",
+		data: idData,
+		success: function(result, status, xhr){
+			console.log("image request success!");
+		}
+	});
+    
+});
+
+
 
 window.onload = rowSetup();

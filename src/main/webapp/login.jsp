@@ -6,11 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="resources/js/easterEgg.js"></script>
 <title>Login</title>
 <%@ include file="tiles/bootstrap.jsp"%>
-
-
-<body>
+<link rel="stylesheet" type="text/css"  href="resources/css/dabokiStyle.css"/>
+</head>
+<body id="bodyImg">
 	<c:if test="${wrongPass != null }">
 	<div class="row">
 		<div class="col-md-4"></div>
@@ -19,25 +20,41 @@
 		</div>
 	</div>
 	</c:if>
-	<div class="col-md-4">
+
 	
-	</div>
-	
-	<div class="container">
-		<div class="col-md-4 ">
+	<div class="container" id ="loginContainer">
+		<div class="col-md-6 col-md-offset-3 text-center well">
 			<form method="POST" class="form-signin" action="login.do">
-				<h2 class="form-signin-heading">Avenging The Costs </h2>
-				<label for="inputUsername" class="sr-only">Username</label> 
-				<input name="username" type="text" id="userName" class="form-control" placeholder="Username" 
-				required autofocus> 
-				<label for="inputPassword" class="sr-only">Password</label> 
-					<input type="password" id="inputPassword" name="password" class="form-control" 
-						placeholder="Password" required>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
-					in</button>
+				<h2 class="form-signin-heading text-center" id="loginTitleFont">
+					Avenging The Costs
+				</h2>			
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 loginField">
+						<label for="inputUsername" class="sr-only">Username</label> 
+						<input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus> 
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 loginField">
+						<label for="inputPassword" class="sr-only">Password</label> 
+						<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>						
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="row">
+							<div class="col-md-4 pull-right">
+								<button class="btn btn-primary btn-block" type="submit">Sign in</button>						
+							</div>						
+						</div>
+					</div>
+				</div>								
 			</form>
 
 		</div>
+
 	</div>
+<!-- 					<button onclick="changeBackground()" class="btn">M</button>
+		<img id="bob" alt="" src="resources/images/Bob-Ross.png"> -->
 </body>
 </html>

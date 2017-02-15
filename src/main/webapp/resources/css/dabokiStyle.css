@@ -1,9 +1,15 @@
 @CHARSET "ISO-8859-1";
 
-table{
+.userWelcomeText{
+	font-family: 'japanese_touristregular';
+	color:white;
+	font-size:50px;
+	
+}
+
+.divScroll{
    overflow-y:scroll;
    height:500px;
-   display:block;
 }
 
 .btn-circle {
@@ -23,4 +29,78 @@ table{
   font-size: 18px;
   line-height: 1.33;
   border-radius: 25px;
+}
+
+@font-face {
+    font-family: 'japanese_touristregular';
+    src: url('japanese_tourist-webfont.woff2') format('woff2'),
+         url('japanese_tourist-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'cookiemonstermedium';
+    src: url('cookiemonster-webfont.woff2') format('woff2'),
+         url('cookiemonster-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#loginTitleFont{
+	font-family:'cookiemonstermedium';
+	font-size: 5em;
+	margin-bottom:.5em;
+}
+
+.titleFont{
+	font-family:'cookiemonstermedium';
+	color:black;
+}
+
+.helvet{
+	font-family:'helvetica';
+}
+
+.titleFont#profileTitle{
+	color:white;
+	text-align:center;
+}
+
+.japanText{
+	font-family:'japanese_touristregular'
+}
+
+#loginContainer{
+	margin-top:12em;
+}
+
+#inputUsername, #inputPassword{
+	margin:.5em;
+}
+
+.well{
+	background:rgba(180,180,180,.8);
+}
+
+body{
+	background:url("../images/aveng.jpg") no-repeat center top;
+}
+
+.loginField{
+	padding-right:1.5em;
+}
+
+.inputRow{
+	padding-bottom:.75em;
+}
+
+.buttonSave{
+    position: relative;
+    bottom: 0;
+}
+
+.divHeight{
+	height:2em;
 }

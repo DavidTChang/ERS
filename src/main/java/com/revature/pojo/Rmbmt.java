@@ -1,7 +1,7 @@
 package com.revature.pojo;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
+import java.util.Base64;
 
 import com.revature.enums.RType;
 import com.revature.enums.Status;
@@ -10,7 +10,7 @@ public class Rmbmt {
 	private int id, authorId, resolverId;
 	private String desc;
 	private double amount;
-	private Blob receiptBlob;
+	private byte[] receiptBlob;
 	
 	RType type;
 	
@@ -18,11 +18,9 @@ public class Rmbmt {
 	
 	private Timestamp submitDate, resolvedDate;
 
+	private String imageString;
 	
-	
-
-
-	public Rmbmt(int id, double amount, String desc, Blob blob,Timestamp sb, Timestamp res,
+	public Rmbmt(int id, double amount, String desc, byte[] blob,Timestamp sb, Timestamp res,
 			int authorId, int resolverId, RType rtType, Status status){
 		super();
 		this.id = id;
@@ -35,9 +33,10 @@ public class Rmbmt {
 		this.submitDate = sb;
 		this.resolvedDate = res;
 		this.desc = desc;
+		//this.imageString = new String(Base64.getEncoder().encode(blob));
 	}
 
-	public Rmbmt( int authorId, String desc, RType type, Status status, double amount, Timestamp submitDate) {
+	public Rmbmt( int authorId, String desc, RType type, Status status, double amount, Timestamp submitDate, byte[] blobReceipt) {
 		super();
 		//this.id = id;
 		this.desc = desc;
@@ -47,8 +46,14 @@ public class Rmbmt {
 		this.status = status;
 		this.amount = amount;
 		this.submitDate = submitDate;
+		this.receiptBlob = blobReceipt;
 		//this.resolvedDate = resolvedDate;
 	}
+
+	public String getImageString() {
+		return  new String(Base64.getEncoder().encode(receiptBlob));
+	}
+
 
 	public int getId() {
 		return id;
@@ -98,11 +103,11 @@ public class Rmbmt {
 		this.amount = amount;
 	}
 
-	public Blob getReceiptBlob() {
+	public byte[] getReceiptBlob() {
 		return receiptBlob;
 	}
 
-	public void setReceiptBlob(Blob receiptBlob) {
+	public void setReceiptBlob(byte[] receiptBlob) {
 		this.receiptBlob = receiptBlob;
 	}
 

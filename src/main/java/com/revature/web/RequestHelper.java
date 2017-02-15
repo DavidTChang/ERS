@@ -51,12 +51,13 @@ public class RequestHelper {
 			req.getSession().setAttribute("authState", new Object());
 
 			if (user.getUserRole() == UserRole.MANAGER) {
-				List<Rmbmt> rmbmtList = new RmbmtService().getAllRmbmtByStatus(Status.PENDING);
+				List<Rmbmt> rmbmtList = new RmbmtService().getAllRmbmt();
 				req.getSession().setAttribute("rmbmtList", rmbmtList);
 				return "managerHome";
 			} else if (user.getUserRole() == UserRole.EMPLOYEE) {
 
 				List<Rmbmt> rmbmtList = new RmbmtService().getAllRmbmt(user.getUserId());
+				new RmbmtService().setMappedManagers(rmbmtList, req);
 				// Need to check if list is empty, do something else? or do that
 				// later.
 				req.getSession().setAttribute("rmbmtList", rmbmtList);
@@ -87,7 +88,12 @@ public class RequestHelper {
 		else if(targetReq.equals("/ERS/updateProfile.do")){
 			
 			new UserService().updateUserProfile(req);
-			return "profile.redirect";
+			User currentUser = new UserService().getCurrentSessionUser(req);
+			if(currentUser.getUserRole().equals(UserRole.MANAGER)){
+				return "managerHome.redirect";
+			}else if(currentUser.getUserRole().equals(UserRole.EMPLOYEE)){
+				return "employeeHome.redirect";
+			}
 		}
 		
 		//--------------------------------------------------------------------------------------------//
@@ -101,10 +107,19 @@ public class RequestHelper {
 			new RmbmtService().filterOnEmployee(req);
 			
 		}
+		//------------------------------------------------------------------------------------------//
+		else if(targetReq.equals("/ERS/home.do")){
+			User user = new UserService().getCurrentSessionUser(req);
+			if(user.getUserRole().equals(UserRole.EMPLOYEE)){
+				return "employeeHome";
+			}else if(user.getUserRole().equals(UserRole.MANAGER)){
+				return "managerHome";
+			}
+		}
 		else {
 			return null; // Need to not do anything. Maybe error?
 		}
-
+		//------------------------------------------------------------------------------------------------//
 		return null;
 	}
 }

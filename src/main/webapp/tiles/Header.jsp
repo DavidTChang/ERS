@@ -4,7 +4,7 @@
 <nav class="navbar navbar-default">
 <div class="container - fluid">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="#">AVENGING COSTS</a>
+		<a class="navbar-brand" >AVENGING COSTS</a>
 	</div>
 
 	<div class="row navbar-right">
@@ -19,7 +19,6 @@
 					
 				<ul class="dropdown-menu">
 					<li><a href="profile">Profile</a></li>
-					<li><a href="#">Edit Profile</a></li>
 					<li role="separator" class="divider"></li>
 					<li><a href="logout">Logout</a></li>
 				</ul>

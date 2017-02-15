@@ -21,7 +21,6 @@ public class MasterServlet extends HttpServlet{
 
 		
 		String nextPage = new RequestHelper().handleRequest(req, resp);
-		
 		if(nextPage.contains(".redirect")){
 			String[] reqPath = nextPage.split("\\.");
 			resp.sendRedirect(reqPath[0]);

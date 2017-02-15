@@ -12,7 +12,6 @@
 <title>${currentuser.firstName } - Profile</title>
 
 <script src="http://code.jquery.com/jquery.min.js"></script>
-<script src="resources/js/profile.js"></script>
 </head>
 <body>
 <%@ include file="tiles/Header.jsp"%>
@@ -20,34 +19,39 @@
 	
 
 	<div class="container">
-	<h1>Personal Information</h1>
+	<h1 class="titleFont" id="profileTitle">Personal Information</h1>
 	
-	<div class="col-md-2">
-	</div>
-	
-	<div class="col-md-8 jumbotron">
+	<div class="col-md-6 col-md-offset-3 jumbotron">
 	<form action="updateProfile.do" method="POST" >
-		<div class="row">
-			<h4 class="col-md-3">First Name:</h4> 
-			<input class = "col-md-3" type="text" name = "e_firstname" value="${currentuser.firstName}">
+		<div class="row inputRow">
+			<div class="col-md-6">
+				<label for="firstName">First Name:</label> 
+				<input class = "form-control" id="firstName" type="text" name = "e_firstname" value="${currentuser.firstName}">					
+			</div>
+			<div class="col-md-6">
+				<label for="lastName"  >Last Name:</label>
+				<input class = "form-control" type="text" id="lastName" name = "e_lastname" value="${currentuser.lastName}">			
+			</div>
 		</div>
-		<div class="row">		
-			<h4 class="col-md-3">Last Name:</h4>
-			<input class = "col-md-3" type="text" name = "e_lastname" value="${currentuser.lastName}">
+		<div class="row inputRow">
+			<div class="col-md-12">
+				<label for="email" >Email:</label>
+				<input class = "form-control" id ="email" type="text" name = "e_email" value="${currentuser.email}">
+			</div>
 		</div>
-		<div class="row">
-			<h4 class="col-md-3">Username:</h4>
-			<input class = "col-md-3" type="text" name = "e_username" value="${currentuser.userName}">
+		<div class="row inputRow">
+			<div class="col-md-6">
+				<label for="username">Username:</label>
+				<input class = "form-control" id="username" type="text" name = "e_username" value="${currentuser.userName}">
+			</div>
+			<div class="col-md-6">
+				<label for="password" >Password:</label> 
+				<input class = "form-control" id="password" type="text" name = "e_password" value="${currentuser.password}">
+			</div>
 		</div>
-		<div class="row">
-			<h4 class="col-md-3">Email:</h4>
-			<input class = "col-md-3" type="text" name = "e_email" value="${currentuser.email}">
+		<div class="pull-right">
+			<button type="submit" class="pull-right btn btn-default">Update</button>		
 		</div>
-		<div class="row">
-			<h4 class="col-md-3">Password:</h4> 
-			<input class = "col-md-3" type="text" name = "e_password" value="${currentuser.password}">
-		</div>
-		<button type="submit" class="pull-right btn btn-default">Update</button>
 	</form>
 	</div>
 	</div>

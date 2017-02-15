@@ -47,10 +47,9 @@ public class UserService {
 				req.getParameter("e_firstname"),req.getParameter("e_lastname"),
 				req.getParameter("e_email"),user.getUserRole());
 				
-		System.out.println(updateUser);
 		UserDao userDao = new UserDao();
 		userDao.updateUser(updateUser);
-		updateUser = userDao.getUser(user.getUserName());
+		updateUser = userDao.getUser(updateUser.getUserName());
 		
 		req.getSession().setAttribute("currentuser", updateUser);
 		

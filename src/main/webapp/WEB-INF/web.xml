@@ -4,7 +4,14 @@
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
-  
+  <servlet>
+  	<servlet-name>imageServlet</servlet-name>
+  	<servlet-class>com.revature.servlets.ImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>imageServlet</servlet-name>
+  	<url-pattern>/imageServlet/*</url-pattern>
+  </servlet-mapping>
    <servlet>
   	<servlet-name>master</servlet-name>
   	<servlet-class>com.revature.web.MasterServlet</servlet-class>

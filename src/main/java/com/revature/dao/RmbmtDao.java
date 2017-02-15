@@ -14,6 +14,7 @@ import com.revature.enums.Status;
 import com.revature.pojo.Rmbmt;
 
 import oracle.jdbc.OracleTypes;
+import oracle.jdbc.oracore.OracleType;
 
 public class RmbmtDao implements IRmbmtDao {
 	private final static String URL = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -33,15 +34,16 @@ public class RmbmtDao implements IRmbmtDao {
 
 		try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);) {
 			String rSql = "INSERT INTO ERS_REIMBURSEMENTS (R_AMOUNT,R_DESCRIPTION,R_"
-					+ "SUBMITTED, U_ID_AUTHOR, RT_TYPE,RT_STATUS) VALUES(?,?,?,?,?,?)";
+					+ "SUBMITTED, R_RECEIPT,U_ID_AUTHOR, RT_TYPE,RT_STATUS) VALUES(?,?,?,?,?,?,?)";
 			PreparedStatement ps = connection.prepareStatement(rSql);
 			System.out.println(r);
 			ps.setDouble(1, r.getAmount());
 			ps.setString(2, r.getDesc());
 			ps.setTimestamp(3, r.getSubmitDate());
-			ps.setInt(4, r.getAuthorId());
-			ps.setInt(5, r.getType().getTypeId());
-			ps.setInt(6, r.getStatus().getId());
+			ps.setBytes(4, r.getReceiptBlob());
+			ps.setInt(5, r.getAuthorId());
+			ps.setInt(6, r.getType().getTypeId());
+			ps.setInt(7, r.getStatus().getId());
 
 			ps.executeQuery();
 
@@ -92,7 +94,7 @@ public class RmbmtDao implements IRmbmtDao {
 			ResultSet rs = (ResultSet) cs.getObject(2);
 
 			while (rs.next()) {
-				rList.add(new Rmbmt(rs.getInt(1), rs.getDouble(2), rs.getString(3), rs.getBlob(4), rs.getTimestamp(5),
+				rList.add(new Rmbmt(rs.getInt(1), rs.getDouble(2), rs.getString(3), rs.getBytes(4), rs.getTimestamp(5),
 						rs.getTimestamp(6), rs.getInt(7), rs.getInt(8), RType.getTypeById(rs.getInt(9)),
 						Status.getStatusById(rs.getInt(10))));
 			}
@@ -120,7 +122,7 @@ public class RmbmtDao implements IRmbmtDao {
 
 			ResultSet rs = (ResultSet) cs.getObject(2);
 			while (rs.next()) {
-				rList.add(new Rmbmt(rs.getInt(1), rs.getDouble(2), rs.getString(3), rs.getBlob(4), rs.getTimestamp(5),
+				rList.add(new Rmbmt(rs.getInt(1), rs.getDouble(2), rs.getString(3), rs.getBytes(4), rs.getTimestamp(5),
 						rs.getTimestamp(6), rs.getInt(7), rs.getInt(8), RType.getTypeById(rs.getInt(9)),
 						Status.getStatusById(rs.getInt(10))));
 			}
@@ -149,7 +151,7 @@ public class RmbmtDao implements IRmbmtDao {
 			List<Rmbmt> rList = new ArrayList<Rmbmt>();
 			
 			while(rs.next()){
-				rList.add(new Rmbmt(rs.getInt(1), rs.getDouble(2), rs.getString(3), rs.getBlob(4), rs.getTimestamp(5),
+				rList.add(new Rmbmt(rs.getInt(1), rs.getDouble(2), rs.getString(3), rs.getBytes(4), rs.getTimestamp(5),
 						rs.getTimestamp(6), rs.getInt(7), rs.getInt(8), RType.getTypeById(rs.getInt(9)),
 						Status.getStatusById(rs.getInt(10))));
 			}

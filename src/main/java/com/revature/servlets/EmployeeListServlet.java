@@ -37,13 +37,11 @@ public class EmployeeListServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// List<User> userList = new UserService().getAllEmployees(req);
 
 		TestPojo jsonUserList = new TestPojo("David");
 
 		ObjectMapper om = new ObjectMapper();
 
-		// DataUserListJson jsonUserList = new DataUserListJson(userList);
 		String json = om.writeValueAsString(jsonUserList);
 		
 		PrintWriter pw = resp.getWriter();

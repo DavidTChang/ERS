@@ -8,8 +8,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -23,29 +27,25 @@ import com.revature.pojo.DataRmbmtJson;
 import com.revature.pojo.Rmbmt;
 import com.revature.pojo.User;
 
+@MultipartConfig
 public class RmbmtService {
 
-	public void createNewRmbmt(HttpServletRequest req){
-		HttpSession session = req.getSession();
-		User currentUser = (User) session.getAttribute("currentuser");
-		
-		double amount = Double.parseDouble(req.getParameter("amount"));
-		String type = req.getParameter("type");
-		int typeId = getTypeId(type);
-		String desc = req.getParameter("desc");
-		
-		Date javaDate = new Date();
-		Timestamp date = new Timestamp(javaDate.getTime());
-		
-		Rmbmt rmbmt = new Rmbmt(currentUser.getUserId(),desc,RType.getTypeById(typeId),Status.getStatusById(1),amount,date);
-		
-		RmbmtDao daoRmbmt = new RmbmtDao();
-		daoRmbmt.createRmbmt(rmbmt);
-	}
+
 	
 	public List<Rmbmt> getAllRmbmt(int userId){
 		RmbmtDao rDao = new RmbmtDao();
 		List<Rmbmt> rList = rDao.getRmbmtByEmployee(userId);
+		
+		return rList;
+	}
+	
+	public void setMappedManagers(List<Rmbmt> rList, HttpServletRequest req){
+		Map<Integer, User> mappedManagers = getMappedApprovedManagerMap(rList);	
+		req.getSession().setAttribute("addRows", mappedManagers);//maybe set map in here
+	}
+	
+	public List<Rmbmt> getAllRmbmt(){
+		List<Rmbmt> rList = new RmbmtDao().getAllRmbmt();
 		return rList;
 	}
 	
@@ -104,6 +104,7 @@ public class RmbmtService {
 			Date date = new Date();
 			Timestamp ts = new Timestamp(date.getTime());
 			for(Integer i : drj.getaList()){
+				System.out.println("ID FOR RMBMT" + i);
 				rDao.updateStatus(i, Status.APPROVED.getId(), ts, user.getUserId());
 			}
 			
@@ -178,4 +179,5 @@ public class RmbmtService {
 		}
 	}
 	
+	public void test(){}
 }

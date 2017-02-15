@@ -12,6 +12,7 @@ public enum RType {
 	private final int typeId;
 	
 	private final static Map<Integer, RType> lookUpTypeById = mapIdToType();
+	private final static Map<String, RType> lookUpTypeByName = mapNameToType();
 
 	private RType( int typeId,String type) {
 		this.type = type;
@@ -34,5 +35,17 @@ public enum RType {
 			tempMap.put(ur.typeId, ur);
 		}
 		return tempMap;
+	}
+	
+	private static Map<String, RType> mapNameToType(){
+		Map<String, RType> tempMap = new HashMap<>();
+		for(RType ur : RType.values()){
+			tempMap.put(ur.type, ur);
+		}
+		return tempMap;
+	}
+	public static RType getTypeByName(String name) {
+		// TODO Auto-generated method stub
+		return lookUpTypeByName.get(name);
 	}
 }
