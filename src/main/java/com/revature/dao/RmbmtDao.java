@@ -17,8 +17,8 @@ import oracle.jdbc.OracleTypes;
 import oracle.jdbc.oracore.OracleType;
 
 public class RmbmtDao implements IRmbmtDao {
-	private final static String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private final static String USERNAME = "ers";
+	private final static String URL = "jdbc:oracle:thin:@java1701.cylnhxmf2kbj.us-west-2.rds.amazonaws.com:1521";
+	private final static String USERNAME = "java1701";
 	private final static String PASSWORD = "p4ssw0rd";
 
 	static {
