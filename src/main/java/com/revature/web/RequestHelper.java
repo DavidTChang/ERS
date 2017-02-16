@@ -122,6 +122,6 @@ public class RequestHelper {
 			return null; // Need to not do anything. Maybe error?
 		}
 		//------------------------------------------------------------------------------------------------//
-		return null;
+		return "/";
 	}
 }
